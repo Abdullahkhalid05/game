@@ -1,6 +1,6 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
-const resolution = 20;
+const resolution = 30;
 canvas.width = 600;
 canvas.height = 600;
 const COLS = canvas.width / resolution;
@@ -66,6 +66,9 @@ function nextGen(grid) {
             else if (cell === 0 && numNeighbors === 3) {
                 nextGen[col][row] = 1;
             }
+            else if(cell === 0 && numNeighbors ===4){
+                 nextGen[col][row] =1;
+            }
         }
     }
     return nextGen;
@@ -73,8 +76,8 @@ function nextGen(grid) {
 function update() {
     grid = nextGen(grid);
     render(grid);
-    requestAnimationFrame(update);
+    setTimeout(update , 150);
 }
 
-requestAnimationFrame(update);
+update();
 
